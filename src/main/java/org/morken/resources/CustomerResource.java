@@ -1,16 +1,26 @@
 package org.morken.resources;
 
+import org.morken.subjectsystem.SystemResource;
+
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
 @Path("/customer")
-@Produces("application/json")
 public class CustomerResource {
 
-    @GET
-    @Path("/{customer_id}/status")
-    public Object getStatus(@PathParam("customer_id") long customerId) {
-        // TODO
-        return "deal number and status as object";
-    }
+  private SystemResource systemResource;
 
+  public CustomerResource() {
+    // Bean constructor
+  }
+
+  public CustomerResource(SystemResource systemResource) {
+    this.systemResource = systemResource;
+  }
+
+  @GET
+  @Path("/{customer_id}/status")
+  public Response getStatus(@PathParam("customer_id") long customerId) {
+    return Response.ok(systemResource.getCustomer(customerId)).build();
+  }
 }

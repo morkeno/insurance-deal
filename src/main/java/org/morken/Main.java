@@ -6,6 +6,7 @@ import org.morken.resources.CustomerResource;
 import org.morken.resources.InsuranceDealResource;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -21,6 +22,5 @@ public class Main {
         GrizzlyHttpServerFactory.createHttpServer(URI.create(baseUri), config);
 
         System.out.println("Server started at " + baseUri);
-        System.out.println("Press Ctrl+C to stop.");
     }
 }
