@@ -16,21 +16,17 @@ public class SystemResource {
     this.dao = dao;
   }
 
-  public Response createCustomer() {
+  public long createCustomer() {
     Customer customer = system.createNewCustomer();
-    return Response.ok(customer.getId()).build();
+    return customer.getId();
   }
 
-  public Response createInsurance(long customerId, InsuranceDeal insurance) {
+  public long createInsurance(long customerId, InsuranceDeal insurance) {
     system.createInsuranceDealForCustomer(customerId, insurance);
-    return Response.ok(insurance.getId()).build();
+    return insurance.getId();
   }
 
-  public Response getCustomer(long customerId) {
-    try {
-      return Response.ok(dao.getCustomer(customerId)).build();
-    } catch (Exception e) {
-      return Response.serverError().build();
-    }
+  public Customer getCustomer(long customerId) throws Exception {
+      return dao.getCustomer(customerId);
   }
 }

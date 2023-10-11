@@ -16,7 +16,7 @@ class AppTest {
     SystemDAO dao = new SystemDAO();
     SystemResource systemResource = new SystemResource(new System(dao), dao);
     CustomerResource customerResource = new CustomerResource(systemResource);
-    InsuranceDealResource insuranceResource = new InsuranceDealResource(systemResource);
+    InsuranceDealResource insuranceResource = new InsuranceDealResource();
 
     insuranceResource.createInsuranceDeal(new InsuranceDealInput());
   }

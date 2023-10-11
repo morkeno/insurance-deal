@@ -1,17 +1,22 @@
 package org.morken.resources;
 
+import org.morken.api.Customer;
+import org.morken.subjectsystem.System;
+import org.morken.subjectsystem.SystemDAO;
 import org.morken.subjectsystem.SystemResource;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("/customer")
+@Produces("application/json")
 public class CustomerResource {
 
-  private SystemResource systemResource;
+  private final SystemResource systemResource;
 
   public CustomerResource() {
-    // Bean constructor
+    SystemDAO dao = new SystemDAO();
+    systemResource = new SystemResource(new System(dao), dao);
   }
 
   public CustomerResource(SystemResource systemResource) {
@@ -20,7 +25,7 @@ public class CustomerResource {
 
   @GET
   @Path("/{customer_id}/status")
-  public Response getStatus(@PathParam("customer_id") long customerId) {
-    return Response.ok(systemResource.getCustomer(customerId)).build();
+  public Customer getStatus(@PathParam("customer_id") long customerId) throws Exception {
+    return systemResource.getCustomer(customerId);
   }
 }
