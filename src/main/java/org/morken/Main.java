@@ -1,6 +1,7 @@
 package org.morken;
 
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.morken.resources.CustomerResource;
 import org.morken.resources.InsuranceDealResource;
@@ -17,6 +18,7 @@ public class Main {
 
         // Create a resource configuration that includes the resource class
         ResourceConfig config = new ResourceConfig(new HashSet<>(List.of(CustomerResource.class, InsuranceDealResource.class)));
+        config.register(JacksonJsonProvider.class);
 
         // Create and start the embedded Grizzly server
         GrizzlyHttpServerFactory.createHttpServer(URI.create(baseUri), config);

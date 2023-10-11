@@ -8,7 +8,7 @@ import java.util.Set;
 /** Mocked class for demonstration */
 public class System {
   private final SystemDAO dao;
-  private int mockedId = 0;
+  private static int mockedId = 0;
 
   public System(SystemDAO dao) {
     this.dao = dao;

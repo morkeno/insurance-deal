@@ -13,12 +13,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/insurance")
-public class InsuranceDealResource {
-
-  private final SystemResource systemResource;
+public class InsuranceDealResource extends Resource {
 
   public InsuranceDealResource() {
-    systemResource = new SystemResource(new System(new SystemDAO()), new SystemDAO());
   }
 
   @POST
