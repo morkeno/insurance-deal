@@ -3,22 +3,24 @@ package org.morken.api;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.ws.rs.Consumes;
+
+@Consumes("application/json")
 public class InsuranceDealInput {
 
-  @JsonProperty public Customer customer;
-
-  @JsonProperty public InsuranceDeal insurance;
+  @JsonProperty("type")
+  public InsuranceType type;
 
   @JsonCreator
   public InsuranceDealInput() {
     // Jackson creator
   }
 
-  public Customer getCustomer() {
-    return customer;
+  public InsuranceDealInput(InsuranceType type) {
+    this.type = type;
   }
 
-  public InsuranceDeal getInsurance() {
-    return insurance;
+  public InsuranceType getType() {
+    return type;
   }
 }

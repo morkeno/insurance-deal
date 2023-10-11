@@ -2,26 +2,28 @@ package org.morken.subjectsystem;
 
 import org.morken.api.Customer;
 import org.morken.api.InsuranceDeal;
+import org.morken.api.InsuranceType;
 
 import java.util.Set;
 
 /** Mocked class for demonstration */
 public class System {
   private final SystemDAO dao;
-  private static int mockedId = 0;
+  private static int mockedCustomerId = 0;
+  private static int mockedInsuranceId = 0;
 
   public System(SystemDAO dao) {
     this.dao = dao;
   }
 
   public Customer createNewCustomer() {
-    mockedId += 1;
-    Customer customer = new Customer(mockedId, Set.of());
+    mockedCustomerId += 1;
+    Customer customer = new Customer(mockedCustomerId, Set.of());
     dao.addCustomer(customer);
     return customer;
   }
 
-  public Customer createInsuranceDealForCustomer(long customerId, InsuranceDeal insuranceDeal) {
+  public long createInsuranceDealForCustomer(long customerId, InsuranceType insuranceDealType) {
     Customer customer;
     try {
       customer = dao.getCustomer(customerId);
@@ -31,10 +33,11 @@ public class System {
       customer = createNewCustomer();
     }
 
-    customer.getInsurances().add(insuranceDeal);
+    mockedInsuranceId += 1;
+    customer.getInsurances().add(new InsuranceDeal(mockedInsuranceId, true, insuranceDealType));
 
     dao.updateCustomer(customer);
 
-    return customer;
+    return mockedInsuranceId;
   }
 }

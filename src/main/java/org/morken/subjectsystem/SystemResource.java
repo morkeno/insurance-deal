@@ -2,6 +2,7 @@ package org.morken.subjectsystem;
 
 import org.morken.api.Customer;
 import org.morken.api.InsuranceDeal;
+import org.morken.api.InsuranceType;
 
 import javax.ws.rs.core.Response;
 
@@ -21,9 +22,8 @@ public class SystemResource {
     return customer.getId();
   }
 
-  public long createInsurance(long customerId, InsuranceDeal insurance) {
-    system.createInsuranceDealForCustomer(customerId, insurance);
-    return insurance.getId();
+  public long createInsurance(long customerId, InsuranceType insurance) {
+    return system.createInsuranceDealForCustomer(customerId, insurance);
   }
 
   public Customer getCustomer(long customerId) throws Exception {

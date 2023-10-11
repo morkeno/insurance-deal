@@ -1,5 +1,6 @@
 package org.morken;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -7,7 +8,6 @@ import org.morken.resources.CustomerResource;
 import org.morken.resources.InsuranceDealResource;
 
 import java.net.URI;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
